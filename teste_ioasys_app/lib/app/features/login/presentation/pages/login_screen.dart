@@ -21,7 +21,10 @@ class _LoginScreenState extends State<LoginScreen> {
           Column(
             children: [
               CabecalhoCircularWidget(isTecladoAberto: _isTecladoAberto),
-              CamposEntradaLoginWidget(),
+              CamposEntradaLoginWidget(
+                isLoginValido: true,
+                isSenhaValida: true,
+              ),
             ],
           ),
           //Opacity(

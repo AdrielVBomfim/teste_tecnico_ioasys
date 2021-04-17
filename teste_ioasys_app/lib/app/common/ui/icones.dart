@@ -16,6 +16,7 @@ abstract class Icones {
   static String get iconeLogo => _login(nomeIcone: 'logo');
   static String get iconeLogoComTitulo => _splash(nomeIcone: 'logo_com_titulo');
   static String get background => _common(nomeIcone: 'background');
+  static String get iconeErro => _common(nomeIcone: 'icone_erro');
   static String get arcoCarregamentoMaior => _login(nomeIcone: 'arco_carregamento_maior');
   static String get arcoCarregamentoMenor => _login(nomeIcone: 'arco_carregamento_menor');
 }

@@ -3,4 +3,5 @@ abstract class Strings {
   static const String email = 'Email';
   static const String senha = 'Senha';
   static const String entrar = 'Entrar';
+  static const String credenciaisIncorretas = 'Credenciais incorretas';
 }
