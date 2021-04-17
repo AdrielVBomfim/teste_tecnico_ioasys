@@ -2,6 +2,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:teste_ioasys_app/app/common/ui/strings.dart';
 import 'package:teste_ioasys_app/app/core/network/api_result.dart';
 import 'package:teste_ioasys_app/app/core/network/http_methods.dart';
 import 'custom_dio/custom_dio_creator.dart';
@@ -60,7 +61,15 @@ abstract class RequestHandler {
     }
 
     if (response.statusCode < 300) {
-      return Success(statusCode: response.statusCode, data: response.data);
+      return Success(
+        statusCode: response.statusCode,
+        data: response.data,
+      );
+    } else if (response.statusCode == 401) {
+      return ApiError(
+          statusCode: response.statusCode,
+          message: Strings.credenciaisIncorretas,
+          data: response.data);
     } else {
       return ApiError(
           statusCode: response.statusCode,

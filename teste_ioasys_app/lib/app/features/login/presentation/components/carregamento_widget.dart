@@ -13,9 +13,10 @@ class _CarregamentoWidgetState extends State<CarregamentoWidget>
 
   @override
   void initState() {
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 1500))
-          ..repeat();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1500),
+    )..repeat();
     super.initState();
   }
 
@@ -32,8 +33,8 @@ class _CarregamentoWidgetState extends State<CarregamentoWidget>
         RotationTransition(
           turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
           child: Center(
-          child: Image.asset(Icones.arcoCarregamentoMaior, scale: 2.5),
-    ),
+            child: Image.asset(Icones.arcoCarregamentoMaior, scale: 2.5),
+          ),
         ),
         RotationTransition(
           turns: Tween(begin: 0.0, end: 1.0).animate(_controller),

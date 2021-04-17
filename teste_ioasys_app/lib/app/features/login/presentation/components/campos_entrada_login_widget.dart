@@ -6,11 +6,15 @@ import 'package:teste_ioasys_app/app/common/ui/cores.dart';
 import 'package:teste_ioasys_app/app/common/ui/strings.dart';
 
 class CamposEntradaLoginWidget extends StatefulWidget {
-  const CamposEntradaLoginWidget(
-      {@required this.isLoginValido, @required this.isSenhaValida});
+  const CamposEntradaLoginWidget({
+    @required this.isLoginValido,
+    @required this.isSenhaValida,
+    this.mensagemErro = '',
+  });
 
   final bool isLoginValido;
   final bool isSenhaValida;
+  final String mensagemErro;
 
   @override
   _CamposEntradaLoginWidgetState createState() =>
@@ -66,18 +70,18 @@ class _CamposEntradaLoginWidgetState extends State<CamposEntradaLoginWidget> {
             isInputValid: widget.isSenhaValida,
           ),
           if (!widget.isLoginValido || !widget.isSenhaValida)
-          Padding(
-            padding: EdgeInsets.only(right: 4, top: 4),
-            child: Text(
-              Strings.credenciaisIncorretas,
-              textAlign: TextAlign.end,
-              style: GoogleFonts.rubik(
-                fontSize: 12,
-                fontWeight: FontWeight.w300,
-                color: Colors.red,
+            Padding(
+              padding: EdgeInsets.only(right: 4, top: 4),
+              child: Text(
+                widget.mensagemErro,
+                textAlign: TextAlign.end,
+                style: GoogleFonts.rubik(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.red,
+                ),
               ),
             ),
-          ),
           SizedBox(
             height: 40,
           ),
