@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'cores.dart';
 import 'icones.dart';
 
@@ -24,7 +23,6 @@ class CampoEntradaTextoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(isInputValid);
     return Container(
       decoration: BoxDecoration(
         color: Cores.gainsboro,

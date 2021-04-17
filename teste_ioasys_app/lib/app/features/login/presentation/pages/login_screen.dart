@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste_ioasys_app/app/features/login/presentation/components/cabecalho_circular_widget.dart';
 import 'package:teste_ioasys_app/app/features/login/presentation/components/campos_entrada_login_widget.dart';
-import 'package:teste_ioasys_app/app/features/login/presentation/components/carregamento_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);

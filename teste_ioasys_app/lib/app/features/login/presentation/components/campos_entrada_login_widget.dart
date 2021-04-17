@@ -65,7 +65,7 @@ class _CamposEntradaLoginWidgetState extends State<CamposEntradaLoginWidget> {
             },
             isInputValid: widget.isSenhaValida,
           ),
-          if(!widget.isLoginValido || !widget.isSenhaValida)
+          if (!widget.isLoginValido || !widget.isSenhaValida)
           Padding(
             padding: EdgeInsets.only(right: 4, top: 4),
             child: Text(
