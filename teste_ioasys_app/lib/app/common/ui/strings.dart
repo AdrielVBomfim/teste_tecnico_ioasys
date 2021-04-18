@@ -6,4 +6,8 @@ abstract class Strings {
   static const String credenciaisIncorretas = 'Credenciais incorretas';
   static const String algoInesperadoAconteceu = 'Algo inesperado aconteceu, tente novamente';
   static const String semInternet = 'Não há conexão com a internet, tente novamente mais tarde';
+
+  static String resultadosEncontrados(int quantindade) {
+    return '${quantindade.toString().padLeft(2, '0')} resultados encontrados';
+  }
 }

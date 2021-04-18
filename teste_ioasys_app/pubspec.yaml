@@ -29,6 +29,8 @@ dependencies:
   equatable: ^2.0.0
   flutter_bloc: ^7.0.0
   shared_preferences: ^2.0.5
+  cached_network_image: ^3.0.0
+  shimmer: ^2.0.0
   flutter:
     sdk: flutter
 
@@ -56,6 +58,7 @@ flutter:
     - assets/images/common/
     - assets/images/login/
     - assets/images/splash/
+    - assets/images/home/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

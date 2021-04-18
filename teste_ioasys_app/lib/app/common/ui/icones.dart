@@ -13,6 +13,10 @@ abstract class Icones {
     return 'assets/images/splash/$nomeIcone.png';
   }
 
+  static String _home({@required String nomeIcone}) {
+    return 'assets/images/home/$nomeIcone.png';
+  }
+
   static String get iconeLogo => _login(nomeIcone: 'logo');
   static String get iconeLogoComTitulo => _splash(nomeIcone: 'logo_com_titulo');
   static String get background => _common(nomeIcone: 'background');

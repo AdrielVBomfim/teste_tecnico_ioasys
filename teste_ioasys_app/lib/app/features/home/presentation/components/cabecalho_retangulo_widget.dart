@@ -39,44 +39,22 @@ class _CabecalhoRetanguloWidgetState extends State<CabecalhoRetanguloWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ClipPath(
-              clipper: _ClipRectangle(),
-              child: AnimatedContainer(
-                duration: Duration(milliseconds: 500),
-                alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width,
-                height: DimensionamentoUtils.alturaCabecalhoRetangulo(
-                    context, _isTecladoAberto),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: ExactAssetImage(Icones.background),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        AnimatedContainer(
-          duration: Duration(milliseconds: 500),
-          padding: EdgeInsets.only(
-            left: 16.0,
-            right: 16.0,
-            top: DimensionamentoUtils.alturaTextoCabecalhoRetangulo(
-                context, _isTecladoAberto),
-          ),
-          child: CampoEntradaTextoWidget(
-            prefixIcon: Icons.search,
-            fontSize: 18,
-            opacity: 0.7,
+    return ClipPath(
+      clipper: _ClipRectangle(),
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 500),
+        alignment: Alignment.center,
+        width: MediaQuery.of(context).size.width,
+        height: DimensionamentoUtils.alturaCabecalhoRetangulo(
+            context, _isTecladoAberto),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: ExactAssetImage(Icones.background),
           ),
         ),
-      ],
+        child: (Image.asset(Icones.iconeLogoComTitulo, scale: 3.0)),
+      ),
     );
   }
 }
