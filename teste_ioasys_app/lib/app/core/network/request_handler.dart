@@ -58,18 +58,22 @@ abstract class RequestHandler {
         return ApiError(
             statusCode: dioError.response.statusCode,
             message: Strings.credenciaisIncorretas,
-            data: dioError.response.data);
+            data: dioError.response.data,
+            headers: dioError.response.headers);
       }
 
       return ApiError(
-          statusCode: dioError.response.statusCode,
-          message: dioError.response.statusMessage,
-          data: dioError.response.data);
+        statusCode: dioError.response.statusCode,
+        message: dioError.response.statusMessage,
+        data: dioError.response.data,
+        headers: dioError.response.headers,
+      );
     }
 
     return Success(
       statusCode: response.statusCode,
       data: response.data,
+      headers: response.headers,
     );
   }
 

@@ -110,12 +110,11 @@ class _CamposEntradaLoginWidgetState extends State<CamposEntradaLoginWidget> {
                       ),
                     ),
                     backgroundColor: MaterialStateProperty.all<Color>(
-                        _isSubmissaoHabilitada
-                            ? Cores.rubi
-                            : Cores.gainsboro),
+                        _isSubmissaoHabilitada ? Cores.rubi : Cores.gainsboro),
                   ),
                   onPressed: _isSubmissaoHabilitada
                       ? () {
+                          FocusScope.of(context).unfocus();
                           BlocProvider.of<LoginCubit>(context).submeterLogin(
                               emailController.text, senhaController.text);
                         }
@@ -142,7 +141,6 @@ class _CamposEntradaLoginWidgetState extends State<CamposEntradaLoginWidget> {
 
     if (EmailValidator.validate(emailController.text) &&
         senhaController.text.length >= 6) {
-      print('2');
       setState(() {
         _isSubmissaoHabilitada = true;
       });

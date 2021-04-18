@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:teste_ioasys_app/app/core/network/api_result.dart';
@@ -13,7 +14,7 @@ class LoginRepository implements ILoginRepository {
   LoginDatasource _loginDatasource;
 
   @override
-  Future<Either<Erro, bool>> submeterLogin({
+  Future<Either<Erro, Headers>> submeterLogin({
     String email,
     String senha,
   }) async {
@@ -23,7 +24,7 @@ class LoginRepository implements ILoginRepository {
     );
 
     if (result is Success) {
-      return Right(true);
+      return Right(result.headers);
     } else {
       return Left(result);
     }

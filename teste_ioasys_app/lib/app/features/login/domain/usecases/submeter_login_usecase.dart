@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 import 'package:dartz/dartz.dart';
 import 'package:teste_ioasys_app/app/core/network/api_result.dart';
 import 'package:teste_ioasys_app/injection_container.dart';
@@ -11,7 +12,7 @@ class SubmeterLoginUsecase {
 
   final ILoginRepository _repository;
 
-  Future<Either<Erro, bool>> call({
+  Future<Either<Erro, Headers>> call({
     @required String email,
     @required String senha,
   }) async {

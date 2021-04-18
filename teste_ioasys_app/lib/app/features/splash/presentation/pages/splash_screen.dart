@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:teste_ioasys_app/app/common/coordinator/main_coordinator.dart';
+import 'package:teste_ioasys_app/app/common/headers/domain/usecases/ler_headers_usecase.dart';
 import 'package:teste_ioasys_app/app/common/ui/icones.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,8 +15,21 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(
       Duration(seconds: 3),
-      () => MainCoordinator.irParaLogin(),
+      _avaliarFluxoAposSplash,
     );
+  }
+
+  void _avaliarFluxoAposSplash() async {
+    final resultado = await LerHeadersUsecase()();
+
+    resultado.forEach((_, value) {
+      if (value == null) {
+        MainCoordinator.irParaLogin();
+        return;
+      }
+
+      MainCoordinator.irParaHome();
+    });
   }
 
   @override

@@ -7,10 +7,12 @@ class Success implements ApiResult {
   const Success({
     @required this.statusCode,
     @required this.data,
+    @required this.headers,
   });
 
   final int statusCode;
   final dynamic data;
+  final dynamic headers;
 }
 
 class Erro implements ApiResult {
@@ -18,11 +20,13 @@ class Erro implements ApiResult {
     @required this.statusCode,
     @required this.message,
     @required this.data,
+    @required this.headers,
   });
 
   final int statusCode;
   final String message;
   final dynamic data;
+  final dynamic headers;
 }
 
 class ApiError extends Erro {
@@ -30,10 +34,12 @@ class ApiError extends Erro {
     @required statusCode,
     @required message,
     @required data,
+    @required headers,
   }) : super(
           statusCode: statusCode,
           message: message,
           data: data,
+          headers: headers,
         );
 }
 
@@ -42,17 +48,21 @@ class InternalError extends Erro {
     statusCode,
     @required message,
     data,
+    headers,
   }) : super(
           statusCode: statusCode,
           message: message,
           data: data,
+          headers: headers,
         );
 }
 
 class InternetOff extends Erro {
-  const InternetOff() : super(
-    statusCode: null,
-    message: Strings.semInternet,
-    data: null,
-  );
+  const InternetOff()
+      : super(
+          statusCode: null,
+          message: Strings.semInternet,
+          data: null,
+          headers: null,
+        );
 }

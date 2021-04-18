@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:teste_ioasys_app/app/common/coordinator/main_coordinator.dart';
+import 'package:teste_ioasys_app/app/common/headers/domain/usecases/gravar_headers_usecase.dart';
 import 'package:teste_ioasys_app/app/core/network/api_result.dart';
 import 'package:teste_ioasys_app/app/features/login/domain/usecases/submeter_login_usecase.dart';
 
@@ -25,7 +26,12 @@ class LoginCubit extends Cubit<LoginState> {
           emit(LoginInternetOff(mensagemErro: erro.message));
         }
       },
-      (r) {
+      (resposta) {
+        GravarHeadersUsecase()(
+          uid: resposta.value('uid'),
+          client: resposta.value('client'),
+          accessToken: resposta.value('access-token'),
+        );
         MainCoordinator.irParaHome();
       },
     );
