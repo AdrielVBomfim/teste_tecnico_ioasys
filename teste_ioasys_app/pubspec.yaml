@@ -22,9 +22,12 @@ environment:
 
 dependencies:
   dio: ^4.0.0
+  dartz: ^0.9.2
   get_it: ^6.1.1
   google_fonts: ^2.0.0
   connectivity: ^3.0.3
+  equatable: ^2.0.0
+  flutter_bloc: ^7.0.0
   flutter:
     sdk: flutter
 

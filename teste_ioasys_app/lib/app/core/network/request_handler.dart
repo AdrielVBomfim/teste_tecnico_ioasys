@@ -36,46 +36,41 @@ abstract class RequestHandler {
           break;
         case HttpMethodName.POST:
           response = await _dio.post((httpMethod as Post).url,
-              data: (httpMethod as Post).object);
+              data: (httpMethod as Post).body);
           break;
         case HttpMethodName.DELETE:
           response = await _dio.delete((httpMethod as Delete).url,
-              data: (httpMethod as Delete).object);
+              data: (httpMethod as Delete).body);
           break;
         case HttpMethodName.PUT:
           response = await _dio.put((httpMethod as Put).url,
-              data: (httpMethod as Put).object);
+              data: (httpMethod as Put).body);
           break;
         case HttpMethodName.PATCH:
           response = await _dio.patch((httpMethod as Patch).url,
-              data: (httpMethod as Patch).object);
+              data: (httpMethod as Patch).body);
           break;
         default:
           return InternalError(message: 'Deu Ruim :(');
       }
     } on DioError catch (dioError) {
+      if (dioError.response.statusCode == 401) {
+        return ApiError(
+            statusCode: dioError.response.statusCode,
+            message: Strings.credenciaisIncorretas,
+            data: dioError.response.data);
+      }
+
       return ApiError(
           statusCode: dioError.response.statusCode,
           message: dioError.response.statusMessage,
           data: dioError.response.data);
     }
 
-    if (response.statusCode < 300) {
-      return Success(
-        statusCode: response.statusCode,
-        data: response.data,
-      );
-    } else if (response.statusCode == 401) {
-      return ApiError(
-          statusCode: response.statusCode,
-          message: Strings.credenciaisIncorretas,
-          data: response.data);
-    } else {
-      return ApiError(
-          statusCode: response.statusCode,
-          message: response.statusMessage,
-          data: response.data);
-    }
+    return Success(
+      statusCode: response.statusCode,
+      data: response.data,
+    );
   }
 
   static Future<bool> _isInternetAvailable(

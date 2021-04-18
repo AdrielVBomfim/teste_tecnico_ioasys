@@ -1,19 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:teste_ioasys_app/app/common/ui/campo_entrada_texto_widget.dart';
 import 'package:teste_ioasys_app/app/common/ui/cores.dart';
 import 'package:teste_ioasys_app/app/common/ui/strings.dart';
+import 'package:teste_ioasys_app/app/features/login/presentation/cubit/login_cubit.dart';
+import 'package:teste_ioasys_app/app/features/login/utils/email_validator.dart';
 
 class CamposEntradaLoginWidget extends StatefulWidget {
   const CamposEntradaLoginWidget({
-    @required this.isLoginValido,
-    @required this.isSenhaValida,
+    @required this.isCredenciaisValidas,
     this.mensagemErro = '',
   });
 
-  final bool isLoginValido;
-  final bool isSenhaValida;
+  final bool isCredenciaisValidas;
   final String mensagemErro;
 
   @override
@@ -22,7 +22,10 @@ class CamposEntradaLoginWidget extends StatefulWidget {
 }
 
 class _CamposEntradaLoginWidgetState extends State<CamposEntradaLoginWidget> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController senhaController = TextEditingController();
   bool _isSenhaEscondida = true;
+  bool _isSubmissaoHabilitada = false;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,11 @@ class _CamposEntradaLoginWidgetState extends State<CamposEntradaLoginWidget> {
             ),
           ),
           CampoEntradaTextoWidget(
-            isInputValid: widget.isLoginValido,
+            textController: emailController,
+            isInputValid: widget.isCredenciaisValidas,
+            onChanged: (_) {
+              _avaliarValidacaoFormComSubmissao();
+            },
           ),
           SizedBox(
             height: 16,
@@ -59,6 +66,7 @@ class _CamposEntradaLoginWidgetState extends State<CamposEntradaLoginWidget> {
             ),
           ),
           CampoEntradaTextoWidget(
+            textController: senhaController,
             obscureText: _isSenhaEscondida,
             suffixIcon:
                 _isSenhaEscondida ? Icons.visibility : Icons.visibility_off,
@@ -67,21 +75,23 @@ class _CamposEntradaLoginWidgetState extends State<CamposEntradaLoginWidget> {
                 _isSenhaEscondida = !_isSenhaEscondida;
               });
             },
-            isInputValid: widget.isSenhaValida,
+            isInputValid: widget.isCredenciaisValidas,
+            onChanged: (_) {
+              _avaliarValidacaoFormComSubmissao();
+            },
           ),
-          if (!widget.isLoginValido || !widget.isSenhaValida)
-            Padding(
-              padding: EdgeInsets.only(right: 4, top: 4),
-              child: Text(
-                widget.mensagemErro,
-                textAlign: TextAlign.end,
-                style: GoogleFonts.rubik(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w300,
-                  color: Colors.red,
-                ),
+          Padding(
+            padding: EdgeInsets.only(right: 4, top: 4),
+            child: Text(
+              widget.mensagemErro,
+              textAlign: TextAlign.end,
+              style: GoogleFonts.rubik(
+                fontSize: 12,
+                fontWeight: FontWeight.w300,
+                color: Colors.red,
               ),
             ),
+          ),
           SizedBox(
             height: 40,
           ),
@@ -99,10 +109,17 @@ class _CamposEntradaLoginWidgetState extends State<CamposEntradaLoginWidget> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Cores.rubi),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        _isSubmissaoHabilitada
+                            ? Cores.rubi
+                            : Cores.gainsboro),
                   ),
-                  onPressed: () {},
+                  onPressed: _isSubmissaoHabilitada
+                      ? () {
+                          BlocProvider.of<LoginCubit>(context).submeterLogin(
+                              emailController.text, senhaController.text);
+                        }
+                      : null,
                   child: Text(
                     Strings.entrar.toUpperCase(),
                     style: GoogleFonts.rubik(
@@ -118,5 +135,21 @@ class _CamposEntradaLoginWidgetState extends State<CamposEntradaLoginWidget> {
         ],
       ),
     );
+  }
+
+  void _avaliarValidacaoFormComSubmissao() {
+    BlocProvider.of<LoginCubit>(context).emit(LoginInitial());
+
+    if (EmailValidator.validate(emailController.text) &&
+        senhaController.text.length >= 6) {
+      print('2');
+      setState(() {
+        _isSubmissaoHabilitada = true;
+      });
+    } else {
+      setState(() {
+        _isSubmissaoHabilitada = false;
+      });
+    }
   }
 }

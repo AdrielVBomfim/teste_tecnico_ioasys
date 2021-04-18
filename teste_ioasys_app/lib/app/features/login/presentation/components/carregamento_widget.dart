@@ -37,7 +37,7 @@ class _CarregamentoWidgetState extends State<CarregamentoWidget>
           ),
         ),
         RotationTransition(
-          turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
+          turns: Tween(begin: 0.0, end: -1.0).animate(_controller),
           child: Center(
             child: Image.asset(Icones.arcoCarregamentoMenor, scale: 2.5),
           ),

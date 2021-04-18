@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste_ioasys_app/app/common/ui/strings.dart';
 
 abstract class ApiResult {}
 
@@ -48,6 +49,10 @@ class InternalError extends Erro {
         );
 }
 
-class InternetOff implements ApiResult {
-  InternetOff();
+class InternetOff extends Erro {
+  const InternetOff() : super(
+    statusCode: null,
+    message: Strings.algoInesperadoAconteceu,
+    data: null,
+  );
 }

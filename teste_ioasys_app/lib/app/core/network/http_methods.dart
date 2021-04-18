@@ -15,37 +15,37 @@ class Get implements HttpMethod {
 }
 
 class Post implements HttpMethod {
-  const Post({@required this.url, @required this.object});
+  const Post({@required this.url, @required this.body});
 
   final String url;
-  final dynamic object;
+  final dynamic body;
 
   HttpMethodName get methodName => HttpMethodName.POST;
 }
 
 class Delete implements HttpMethod {
-  const Delete({@required this.url, @required this.object});
+  const Delete({@required this.url, @required this.body});
 
   final String url;
-  final dynamic object;
+  final dynamic body;
 
   HttpMethodName get methodName => HttpMethodName.DELETE;
 }
 
 class Put implements HttpMethod {
-  const Put({@required this.url, @required this.object});
+  const Put({@required this.url, @required this.body});
 
   final String url;
-  final dynamic object;
+  final dynamic body;
 
   HttpMethodName get methodName => HttpMethodName.PUT;
 }
 
 class Patch implements HttpMethod {
-  const Patch({@required this.url, @required this.object});
+  const Patch({@required this.url, @required this.body});
 
   final String url;
-  final dynamic object;
+  final dynamic body;
 
   HttpMethodName get methodName => HttpMethodName.PATCH;
 }
