@@ -52,7 +52,7 @@ class InternalError extends Erro {
 class InternetOff extends Erro {
   const InternetOff() : super(
     statusCode: null,
-    message: Strings.algoInesperadoAconteceu,
+    message: Strings.semInternet,
     data: null,
   );
 }

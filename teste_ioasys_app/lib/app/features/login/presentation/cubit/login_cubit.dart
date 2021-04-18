@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:teste_ioasys_app/app/common/coordinator/main_coordinator.dart';
 import 'package:teste_ioasys_app/app/core/network/api_result.dart';
 import 'package:teste_ioasys_app/app/features/login/domain/usecases/submeter_login_usecase.dart';
 
@@ -18,13 +19,15 @@ class LoginCubit extends Cubit<LoginState> {
 
     resultado.fold(
       (erro) {
-        if (erro is ApiError) {
+        if (erro is Erro) {
           emit(LoginErro(mensagemErro: erro.message));
         } else {
           emit(LoginInternetOff(mensagemErro: erro.message));
         }
       },
-      (r) => emit(LoginInitial()),
+      (r) {
+        MainCoordinator.irParaHome();
+      },
     );
   }
 }
