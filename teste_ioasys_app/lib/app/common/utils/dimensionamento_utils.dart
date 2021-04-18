@@ -1,21 +1,17 @@
 import 'package:flutter/cupertino.dart';
 
 abstract class DimensionamentoUtils {
-  static bool isTecladoAberto(BuildContext context) {
-    return MediaQuery.of(context).viewInsets.bottom > 0.0;
-  }
-
-  static double alturaCabecalhoCirculo(BuildContext context) {
+  static double alturaCabecalhoCirculo(BuildContext context, bool isTecladoAberto) {
     return MediaQuery.of(context).size.height *
-        (isTecladoAberto(context) ? 0.2: 0.35);
+        (isTecladoAberto ? 0.2: 0.35);
   }
 
-  static double alturaCabecalhoRetangulo(BuildContext context) {
+  static double alturaCabecalhoRetangulo(BuildContext context, bool isTecladoAberto) {
     return MediaQuery.of(context).size.height *
-        (isTecladoAberto(context) ? 0.075 : 0.25);
+        (isTecladoAberto ? 0.075 : 0.25);
   }
 
-  static double alturaTextoCabecalhoRetangulo(BuildContext context) {
-    return alturaCabecalhoRetangulo(context) - 24;
+  static double alturaTextoCabecalhoRetangulo(BuildContext context, bool isTecladoAberto) {
+    return alturaCabecalhoRetangulo(context, isTecladoAberto) - 24;
   }
 }

@@ -5,7 +5,36 @@ import 'package:teste_ioasys_app/app/common/ui/icones.dart';
 import 'package:teste_ioasys_app/app/common/ui/strings.dart';
 import 'package:teste_ioasys_app/app/common/utils/dimensionamento_utils.dart';
 
-class CabecalhoCircularWidget extends StatelessWidget {
+class CabecalhoCircularWidget extends StatefulWidget {
+  @override
+  _CabecalhoCircularWidgetState createState() => _CabecalhoCircularWidgetState();
+}
+
+class _CabecalhoCircularWidgetState extends State<CabecalhoCircularWidget> with WidgetsBindingObserver {
+  bool _isTecladoAberto = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeMetrics() {
+    final bottomInset = WidgetsBinding.instance.window.viewInsets.bottom;
+    final newValue = bottomInset > 0.0;
+    if (newValue != _isTecladoAberto) {
+      setState(() {
+        _isTecladoAberto = newValue;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ClipPath(
@@ -19,7 +48,7 @@ class CabecalhoCircularWidget extends StatelessWidget {
           children: [
             Image.asset(Icones.iconeLogo, scale: 2.5),
             SizedBox(height: 18),
-            if (!DimensionamentoUtils.isTecladoAberto(context))
+            if (!_isTecladoAberto)
               Text(
                 Strings.bemVindoEmpresas,
                 style: GoogleFonts.rubik(
@@ -30,8 +59,7 @@ class CabecalhoCircularWidget extends StatelessWidget {
           ],
         ),
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height *
-            (DimensionamentoUtils.alturaCabecalhoCirculo(context)),
+        height: DimensionamentoUtils.alturaCabecalhoCirculo(context, _isTecladoAberto),
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
