@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teste_ioasys_app/app/features/login/presentation/components/cabecalho_circular_widget.dart';
 import 'package:teste_ioasys_app/app/features/login/presentation/components/campos_entrada_login_widget.dart';
-import 'package:teste_ioasys_app/app/features/login/presentation/components/carregamento_widget.dart';
+import 'package:teste_ioasys_app/app/common/ui/carregamento_widget.dart';
 import 'package:teste_ioasys_app/app/features/login/presentation/cubit/login_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -15,7 +15,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    final _isTecladoAberto = MediaQuery.of(context).viewInsets.bottom > 0.0;
     return Scaffold(
       body: BlocProvider<LoginCubit>(
         create: (context) => LoginCubit(),
@@ -25,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Column(
                   children: [
-                    CabecalhoCircularWidget(isTecladoAberto: _isTecladoAberto),
+                    CabecalhoCircularWidget(),
                     CamposEntradaLoginWidget(
                       isCredenciaisValidas: !(state is LoginErro),
                       mensagemErro: _mensagemErroForm(state),

@@ -3,14 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:teste_ioasys_app/app/common/ui/icones.dart';
 import 'package:teste_ioasys_app/app/common/ui/strings.dart';
+import 'package:teste_ioasys_app/app/common/utils/dimensionamento_utils.dart';
 
 class CabecalhoCircularWidget extends StatelessWidget {
-  const CabecalhoCircularWidget({
-    @required this.isTecladoAberto,
-  });
-
-  final bool isTecladoAberto;
-
   @override
   Widget build(BuildContext context) {
     return ClipPath(
@@ -24,7 +19,7 @@ class CabecalhoCircularWidget extends StatelessWidget {
           children: [
             Image.asset(Icones.iconeLogo, scale: 2.5),
             SizedBox(height: 18),
-            if (!isTecladoAberto)
+            if (!DimensionamentoUtils.isTecladoAberto(context))
               Text(
                 Strings.bemVindoEmpresas,
                 style: GoogleFonts.rubik(
@@ -35,8 +30,8 @@ class CabecalhoCircularWidget extends StatelessWidget {
           ],
         ),
         width: MediaQuery.of(context).size.width,
-        height:
-            MediaQuery.of(context).size.height * (isTecladoAberto ? 0.20 : 0.35),
+        height: MediaQuery.of(context).size.height *
+            (DimensionamentoUtils.alturaCabecalhoCirculo(context)),
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
