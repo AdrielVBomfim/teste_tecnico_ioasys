@@ -5,7 +5,7 @@ abstract class Strings {
   static const String entrar = 'Entrar';
   static const String credenciaisIncorretas = 'Credenciais incorretas';
   static const String algoInesperadoAconteceu = 'Algo inesperado aconteceu, tente novamente';
-  static const String semInternet = 'Não há conexão com a internet, tente novamente mais tardsdfsdfsdfsdfe';
+  static const String semInternet = 'Não há conexão com a internet, tente novamente mais tarde';
   static const String pesquisePorEmpresa = 'Pesquise por empresa';
   static const String nenhumResultado = 'Nenhum resultado encontrado';
 
