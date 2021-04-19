@@ -40,7 +40,7 @@ class _CabecalhoCircularWidgetState extends State<CabecalhoCircularWidget> with 
     return ClipPath(
       clipper: _ClipCircle(),
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 500),
+        duration: Duration(milliseconds: 250),
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

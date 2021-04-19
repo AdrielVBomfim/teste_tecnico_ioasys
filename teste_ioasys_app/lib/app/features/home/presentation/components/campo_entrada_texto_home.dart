@@ -38,7 +38,7 @@ class _CampoEntradaTextoHomeState extends State<CampoEntradaTextoHome>
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 250),
       padding: EdgeInsets.only(
         left: 16.0,
         right: 16.0,

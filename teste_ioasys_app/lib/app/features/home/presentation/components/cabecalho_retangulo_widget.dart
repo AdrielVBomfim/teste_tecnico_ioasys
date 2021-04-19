@@ -42,7 +42,7 @@ class _CabecalhoRetanguloWidgetState extends State<CabecalhoRetanguloWidget>
     return ClipPath(
       clipper: _ClipRectangle(),
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 500),
+        duration: Duration(milliseconds: 250),
         alignment: Alignment.center,
         width: MediaQuery.of(context).size.width,
         height: DimensionamentoUtils.alturaCabecalhoRetangulo(
@@ -53,7 +53,50 @@ class _CabecalhoRetanguloWidgetState extends State<CabecalhoRetanguloWidget>
             image: ExactAssetImage(Icones.background),
           ),
         ),
-        child: (Image.asset(Icones.iconeLogoComTitulo, scale: 3.0)),
+        child: Opacity(
+          opacity: _isTecladoAberto ? 0.0 : 1.0,
+          child: Stack(
+            children: [
+              Container(
+                alignment: Alignment.bottomLeft,
+                child: Transform.translate(
+                  offset: Offset(0.0, 20.0),
+                  child: Image.asset(
+                    Icones.iconeLogoApagado1,
+                    scale: 4.0,
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.topRight,
+                child: Transform.translate(
+                  offset: Offset(0.0, 0.0),
+                  child: Image.asset(
+                    Icones.iconeLogoApagado4,
+                    scale: 3.5,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment(-0.7, 0.0),
+                child: Image.asset(
+                  Icones.iconeLogoApagado3,
+                  scale: 3.5,
+                ),
+              ),
+              Transform.translate(
+                offset: Offset(0.0, 20.0),
+                child: Align(
+                  alignment: Alignment(0.6, 1.0),
+                  child: Image.asset(
+                    Icones.iconeLogoApagado2,
+                    scale: 3.5,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
