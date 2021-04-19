@@ -10,7 +10,14 @@ abstract class Strings {
   static const String nenhumResultado = 'Nenhum resultado encontrado';
 
   static String resultadosEncontrados(int quantindade) {
-    return '${quantindade.toString().padLeft(2, '0')} resultados encontrados';
+    final stringQuantidade = quantindade.toString().padLeft(2, '0');
+
+    if (quantindade > 1) {
+      return '$stringQuantidade resultados encontrados';
+    }
+    else {
+      return '$stringQuantidade resultado encontrado';
+    }
   }
 
   static String urlBaseComEndpoint(String endpoint) {

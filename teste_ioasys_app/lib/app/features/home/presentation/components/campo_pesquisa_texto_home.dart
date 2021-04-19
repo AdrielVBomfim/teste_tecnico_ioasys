@@ -47,7 +47,7 @@ class _CampoPesquisaTextoWidgetState extends State<CampoPesquisaTextoWidget>
   _onSearchChanged(String query) {
     if (_debounce?.isActive ?? false) _debounce.cancel();
     _debounce = Timer(const Duration(milliseconds: 500), () {
-      if (query != '' && query != _queryAnterior) {
+      if (query != _queryAnterior) {
         _queryAnterior = query;
         BlocProvider.of<HomeCubit>(context)
             .consultarEmpresas(consultaNome: query.toLowerCase());
