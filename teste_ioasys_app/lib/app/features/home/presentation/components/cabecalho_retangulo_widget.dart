@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:teste_ioasys_app/app/common/ui/campo_entrada_texto_widget.dart';
 import 'package:teste_ioasys_app/app/common/ui/icones.dart';
 import 'package:teste_ioasys_app/app/common/utils/dimensionamento_utils.dart';
 

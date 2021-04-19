@@ -1,8 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:teste_ioasys_app/app/common/ui/cores.dart';
+import 'package:teste_ioasys_app/app/common/ui/empresa_titulo_imagem_widget.dart';
 import 'package:teste_ioasys_app/app/common/ui/strings.dart';
 import 'package:teste_ioasys_app/app/features/home/domain/entities/empresa.dart';
 
@@ -12,17 +10,6 @@ class ListaEmpresasWidget extends StatelessWidget {
   });
 
   final List<Empresa> empresas;
-
-  final List<Color> _coresFundoItemLista = [
-    Cores.rubi,
-    Cores.florBiloba,
-    Cores.areiasTahuna,
-    Cores.orchideaEscura,
-    Cores.gaivotaMarinha,
-    Cores.chocante,
-    Cores.rosaDoce,
-    Cores.verdeMarinhoEscuro,
-  ];
 
   Widget build(BuildContext context) {
     return Expanded(
@@ -47,66 +34,14 @@ class ListaEmpresasWidget extends StatelessWidget {
             return Padding(
               padding:
                   const EdgeInsets.only(bottom: 8.0, left: 16.0, right: 16.0),
-              child: Container(
-                height: 120.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(4),
-                  ),
-                  color: _getCorFundoItemLista(index),
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: CachedNetworkImage(
-                        imageUrl: Strings.urlBaseComEndpoint(
-                            empresas[index - 1].photo),
-                        imageBuilder: (context, imageProvider) => Container(
-                          height: 90,
-                          width: 90,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                              )),
-                        ),
-                        placeholder: (context, url) => Shimmer.fromColors(
-                          baseColor: Colors.grey[200],
-                          highlightColor: Colors.grey[350],
-                          child: Container(
-                            height: 90,
-                            width: 90,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        empresas[index - 1].enterpriseName,
-                        style: GoogleFonts.rubik(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              child: EmpresaTituloImagemWidget(
+                empresa: empresas[index - 1],
+                borderRadius: 4.0,
               ),
             );
           }
         },
       ),
     );
-  }
-
-  Color _getCorFundoItemLista(int index) {
-    return _coresFundoItemLista[index % _coresFundoItemLista.length];
   }
 }

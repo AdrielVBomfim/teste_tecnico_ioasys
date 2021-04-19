@@ -11,4 +11,20 @@ abstract class Cores {
   static const Color verdeMarinhoEscuro = Color(0xFF90BB81);
   static const Color areiasTahuna = Color(0xFFD9D295);
   static const Color florBiloba = Color(0xFFA595D9);
+
+  static const List<Color> _coresFundoItemLista = [
+    rubi,
+    florBiloba,
+    areiasTahuna,
+    orchideaEscura,
+    gaivotaMarinha,
+    chocante,
+    rosaDoce,
+    verdeMarinhoEscuro,
+  ];
+
+  static Color getCorFundoItemLista(int index) {
+    return _coresFundoItemLista[index % _coresFundoItemLista.length];
+  }
+
 }
