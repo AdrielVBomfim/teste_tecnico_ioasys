@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:teste_ioasys_app/app/common/ui/icones.dart';
 import 'package:teste_ioasys_app/app/common/utils/dimensionamento_utils.dart';
@@ -48,7 +47,7 @@ class _CabecalhoRetanguloWidgetState extends State<CabecalhoRetanguloWidget>
             context, _isTecladoAberto),
         decoration: BoxDecoration(
           image: DecorationImage(
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
             image: ExactAssetImage(Icones.background),
           ),
         ),

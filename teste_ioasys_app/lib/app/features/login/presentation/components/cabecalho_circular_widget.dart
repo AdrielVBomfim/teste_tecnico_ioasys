@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:teste_ioasys_app/app/common/ui/icones.dart';
@@ -62,7 +61,7 @@ class _CabecalhoCircularWidgetState extends State<CabecalhoCircularWidget> with 
         height: DimensionamentoUtils.alturaCabecalhoCirculo(context, _isTecladoAberto),
         decoration: BoxDecoration(
           image: DecorationImage(
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
             image: ExactAssetImage(Icones.background),
           ),
         ),

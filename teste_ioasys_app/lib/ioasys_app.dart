@@ -11,7 +11,7 @@ class IoasysApp extends StatelessWidget {
       initialRoute: Routes.splashScreen,
       onGenerateRoute: Routes.onGenerateRoute,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.white,
       ),
     );
   }

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 abstract class DimensionamentoUtils {
   static double alturaCabecalhoCirculo(BuildContext context, bool isTecladoAberto) {

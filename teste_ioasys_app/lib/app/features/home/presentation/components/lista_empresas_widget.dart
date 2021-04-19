@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:teste_ioasys_app/app/common/coordinator/main_coordinator.dart';
 import 'package:teste_ioasys_app/app/common/ui/empresa_titulo_imagem_widget.dart';
 import 'package:teste_ioasys_app/app/common/ui/strings.dart';
 import 'package:teste_ioasys_app/app/features/home/domain/entities/empresa.dart';
@@ -37,6 +38,9 @@ class ListaEmpresasWidget extends StatelessWidget {
               child: EmpresaTituloImagemWidget(
                 empresa: empresas[index - 1],
                 borderRadius: 4.0,
+                onPressed: (_) {
+                  MainCoordinator.irParaDetalhesEmpresa(empresas[index - 1]);
+                },
               ),
             );
           }

@@ -1,6 +1,6 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:teste_ioasys_app/app/common/ui/strings.dart';
 import 'package:teste_ioasys_app/app/core/network/api_result.dart';
