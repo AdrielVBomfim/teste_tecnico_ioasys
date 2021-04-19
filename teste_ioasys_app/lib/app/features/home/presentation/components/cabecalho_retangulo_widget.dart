@@ -53,7 +53,9 @@ class _CabecalhoRetanguloWidgetState extends State<CabecalhoRetanguloWidget>
             image: ExactAssetImage(Icones.background),
           ),
         ),
-        child: Opacity(
+        child: AnimatedOpacity(
+          curve: _isTecladoAberto ? Curves.easeOutCirc : Curves.easeInCirc,
+          duration: Duration(milliseconds: 250),
           opacity: _isTecladoAberto ? 0.0 : 1.0,
           child: Stack(
             children: [
