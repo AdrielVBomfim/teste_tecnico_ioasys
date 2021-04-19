@@ -29,6 +29,7 @@ class _CarregamentoWidgetState extends State<CarregamentoWidget>
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.center,
       children: [
         RotationTransition(
           turns: Tween(begin: 0.0, end: 1.0).animate(_controller),

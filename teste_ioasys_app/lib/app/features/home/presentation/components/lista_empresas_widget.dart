@@ -4,9 +4,16 @@ import 'package:shimmer/shimmer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:teste_ioasys_app/app/common/ui/cores.dart';
 import 'package:teste_ioasys_app/app/common/ui/strings.dart';
+import 'package:teste_ioasys_app/app/features/home/domain/entities/empresa.dart';
 
 class ListaEmpresasWidget extends StatelessWidget {
-  List<Color> _coresFundoItemLista = [
+  ListaEmpresasWidget({
+    @required this.empresas,
+  });
+
+  final List<Empresa> empresas;
+
+  final List<Color> _coresFundoItemLista = [
     Cores.rubi,
     Cores.florBiloba,
     Cores.areiasTahuna,
@@ -23,13 +30,13 @@ class ListaEmpresasWidget extends StatelessWidget {
         padding: EdgeInsets.zero,
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: 11,
+        itemCount: empresas.length + 1,
         itemBuilder: (context, index) {
           if (index == 0) {
             return Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 40.0, 16.0, 16.0),
               child: Text(
-                Strings.resultadosEncontrados(4),
+                Strings.resultadosEncontrados(empresas.length),
                 style: GoogleFonts.rubik(
                   fontSize: 14,
                   fontWeight: FontWeight.w300,
@@ -53,17 +60,17 @@ class ListaEmpresasWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: CachedNetworkImage(
-                        imageUrl: 'https://empresas.ioasys.com.br//uploads/enterprise/photo/1/240.jpeg',
+                        imageUrl: Strings.urlBaseComEndpoint(
+                            empresas[index - 1].photo),
                         imageBuilder: (context, imageProvider) => Container(
                           height: 90,
                           width: 90,
                           decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.fill,
-                            )
-                          ),
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              )),
                         ),
                         placeholder: (context, url) => Shimmer.fromColors(
                           baseColor: Colors.grey[200],
@@ -79,12 +86,14 @@ class ListaEmpresasWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Text(
-                      'Empresa X',
-                      style: GoogleFonts.rubik(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
+                    Expanded(
+                      child: Text(
+                        empresas[index - 1].enterpriseName,
+                        style: GoogleFonts.rubik(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],

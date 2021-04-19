@@ -15,7 +15,7 @@ class Get implements HttpMethod {
 }
 
 class Post implements HttpMethod {
-  const Post({@required this.url, @required this.body});
+  const Post({@required this.url, this.body});
 
   final String url;
   final dynamic body;
@@ -24,7 +24,7 @@ class Post implements HttpMethod {
 }
 
 class Delete implements HttpMethod {
-  const Delete({@required this.url, @required this.body});
+  const Delete({@required this.url, this.body});
 
   final String url;
   final dynamic body;
@@ -33,7 +33,7 @@ class Delete implements HttpMethod {
 }
 
 class Put implements HttpMethod {
-  const Put({@required this.url, @required this.body});
+  const Put({@required this.url, this.body});
 
   final String url;
   final dynamic body;
@@ -42,7 +42,7 @@ class Put implements HttpMethod {
 }
 
 class Patch implements HttpMethod {
-  const Patch({@required this.url, @required this.body});
+  const Patch({@required this.url, this.body});
 
   final String url;
   final dynamic body;

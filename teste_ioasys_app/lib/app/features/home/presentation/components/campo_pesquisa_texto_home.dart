@@ -1,15 +1,23 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teste_ioasys_app/app/common/ui/campo_entrada_texto_widget.dart';
+import 'package:teste_ioasys_app/app/common/ui/strings.dart';
 import 'package:teste_ioasys_app/app/common/utils/dimensionamento_utils.dart';
+import 'package:teste_ioasys_app/app/features/home/presentation/cubit/home_cubit.dart';
 
-class CampoEntradaTextoHome extends StatefulWidget {
+class CampoPesquisaTextoWidget extends StatefulWidget {
   @override
-  _CampoEntradaTextoHomeState createState() => _CampoEntradaTextoHomeState();
+  _CampoPesquisaTextoWidgetState createState() =>
+      _CampoPesquisaTextoWidgetState();
 }
 
-class _CampoEntradaTextoHomeState extends State<CampoEntradaTextoHome>
+class _CampoPesquisaTextoWidgetState extends State<CampoPesquisaTextoWidget>
     with WidgetsBindingObserver {
+  Timer _debounce;
+  String _queryAnterior = '';
   bool _isTecladoAberto = false;
 
   @override
@@ -21,6 +29,7 @@ class _CampoEntradaTextoHomeState extends State<CampoEntradaTextoHome>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _debounce?.cancel();
     super.dispose();
   }
 
@@ -33,6 +42,17 @@ class _CampoEntradaTextoHomeState extends State<CampoEntradaTextoHome>
         _isTecladoAberto = newValue;
       });
     }
+  }
+
+  _onSearchChanged(String query) {
+    if (_debounce?.isActive ?? false) _debounce.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      if (query != '' && query != _queryAnterior) {
+        _queryAnterior = query;
+        BlocProvider.of<HomeCubit>(context)
+            .consultarEmpresas(consultaNome: query.toLowerCase());
+      }
+    });
   }
 
   @override
@@ -49,6 +69,8 @@ class _CampoEntradaTextoHomeState extends State<CampoEntradaTextoHome>
         prefixIcon: Icons.search,
         fontSize: 18,
         opacity: 0.7,
+        hintText: Strings.pesquisePorEmpresa,
+        onChanged: _onSearchChanged,
       ),
     );
   }

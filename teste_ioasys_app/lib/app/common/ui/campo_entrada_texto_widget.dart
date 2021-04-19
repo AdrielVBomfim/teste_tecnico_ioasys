@@ -91,6 +91,7 @@ class _CampoEntradaTextoWidgetState extends State<CampoEntradaTextoWidget> {
               : null,
           border: InputBorder.none,
           fillColor: Colors.amber,
+          hintText: widget.hintText
         ),
         cursorColor: Cores.rubi,
         cursorWidth: 1,

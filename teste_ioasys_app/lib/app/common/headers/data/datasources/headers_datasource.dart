@@ -24,7 +24,7 @@ class HeadersDatasource {
     return {
       'uid': prefs.getString('uid'),
       'client': prefs.getString('client'),
-      'accessToken': prefs.getString('access-token'),
+      'access-token': prefs.getString('access-token'),
     };
   }
 }
