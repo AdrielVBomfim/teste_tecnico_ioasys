@@ -31,7 +31,7 @@ void main() {
         photo: '');
   });
 
-  test('ChavePixModel deve ser subtipo de ChavePix', () async {
+  test('EmpresaModel deve ser subtipo de Empresa', () async {
     expect(tEmpresa, isA<Empresa>());
   });
 }

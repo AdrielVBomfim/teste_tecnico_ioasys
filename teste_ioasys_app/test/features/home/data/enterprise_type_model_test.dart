@@ -13,7 +13,7 @@ void main() {
   });
 
 
-  test('ChavePixModel deve ser subtipo de ChavePix', () {
+  test('EnterpriseTypeModel deve ser subtipo de EnterpriseType', () {
     expect(tEnterpriseType, isA<EnterpriseType>());
   });
 }
