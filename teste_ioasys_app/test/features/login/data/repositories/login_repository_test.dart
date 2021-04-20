@@ -2,9 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:teste_ioasys_app/app/core/network/api_result.dart';
-import 'package:teste_ioasys_app/app/features/home/data/models/empresa_model.dart';
-import 'package:teste_ioasys_app/app/features/home/data/models/enterprise_type_model.dart';
-import 'package:teste_ioasys_app/app/features/home/data/repositories/empresas_repository.dart';
 import 'package:teste_ioasys_app/app/features/login/data/datasources/login_datasource.dart';
 import 'package:teste_ioasys_app/app/features/login/data/repositories/login_repository.dart';
 
