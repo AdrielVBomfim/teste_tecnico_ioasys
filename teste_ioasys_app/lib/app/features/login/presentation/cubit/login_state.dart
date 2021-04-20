@@ -37,3 +37,7 @@ class LoginInternetOff extends LoginState {
   List<Object> get props => [];
 }
 
+class LoginSucesso extends LoginState {
+  @override
+  List<Object> get props => [];
+}

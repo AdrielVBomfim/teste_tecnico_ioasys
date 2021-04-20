@@ -36,3 +36,9 @@ class HomeErro extends HomeState {
   List<Object> get props => [];
 }
 
+class HomeFalhaCredenciais extends HomeState {
+
+  @override
+  List<Object> get props => [];
+}
+

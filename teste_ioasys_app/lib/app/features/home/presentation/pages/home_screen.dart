@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:teste_ioasys_app/app/common/coordinator/main_coordinator.dart';
 import 'package:teste_ioasys_app/app/common/ui/carregamento_widget.dart';
 import 'package:teste_ioasys_app/app/common/ui/cores.dart';
 import 'package:teste_ioasys_app/app/common/ui/strings.dart';
@@ -15,7 +16,12 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: BlocProvider<HomeCubit>(
         create: (context) => HomeCubit()..consultarEmpresas(),
-        child: BlocBuilder<HomeCubit, HomeState>(
+        child: BlocConsumer<HomeCubit, HomeState>(
+          listener: (context, state) {
+            if (state is HomeFalhaCredenciais) {
+              MainCoordinator.irParaLogin();
+            }
+          },
           builder: (context, state) {
             if (state is HomeCarregando) {
               return Stack(

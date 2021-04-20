@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teste_ioasys_app/app/common/coordinator/main_coordinator.dart';
 import 'package:teste_ioasys_app/app/features/login/presentation/components/cabecalho_circular_widget.dart';
 import 'package:teste_ioasys_app/app/features/login/presentation/components/campos_entrada_login_widget.dart';
 import 'package:teste_ioasys_app/app/common/ui/carregamento_widget.dart';
@@ -18,7 +19,12 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: BlocProvider<LoginCubit>(
         create: (context) => LoginCubit(),
-        child: BlocBuilder<LoginCubit, LoginState>(
+        child: BlocConsumer<LoginCubit, LoginState>(
+          listener: (context, state) {
+            if (state is LoginSucesso) {
+              MainCoordinator.irParaHome();
+            }
+          },
           builder: (context, state) {
             return Stack(
               children: [

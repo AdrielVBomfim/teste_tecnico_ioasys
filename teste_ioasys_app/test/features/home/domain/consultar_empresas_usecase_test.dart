@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -8,8 +7,6 @@ import 'package:teste_ioasys_app/app/features/home/data/models/enterprise_type_m
 import 'package:teste_ioasys_app/app/features/home/domain/entities/empresa.dart';
 import 'package:teste_ioasys_app/app/features/home/domain/repositories/i_empresas_repository.dart';
 import 'package:teste_ioasys_app/app/features/home/domain/usecases/consultar_empresas_usecase.dart';
-import 'package:teste_ioasys_app/app/features/login/domain/repositories/i_login_repository.dart';
-import 'package:teste_ioasys_app/app/features/login/domain/usecases/submeter_login_usecase.dart';
 
 class MockEmpresasRepository extends Mock
     implements IEmpresasRepository {}

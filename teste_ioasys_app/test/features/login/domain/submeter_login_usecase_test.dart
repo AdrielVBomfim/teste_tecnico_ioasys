@@ -13,7 +13,6 @@ void main() {
   MockLoginRepository repositoryMock;
   SubmeterLoginUsecase usecase;
 
-  const String _path = 'path';
 
   setUp(() {
     repositoryMock = MockLoginRepository();
